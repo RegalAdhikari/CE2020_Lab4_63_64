@@ -1,7 +1,9 @@
 
 
-#ifndef AbstractBST.h
-#define AbstractBSt.h
+//Manish had deleted the two lines above here
+#ifndef AbstractBST_h
+#define AbstractBSt_h
+
 
 class AbstractBST
 {
