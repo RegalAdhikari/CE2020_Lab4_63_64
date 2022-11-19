@@ -1,95 +1,114 @@
-// C++ program to demonstrate insertion
-// in a BST recursively.
-#include <iostream>
+#include<iostream>
+
 using namespace std;
 
-class BST {
-	int data;
-	BST *left, *right;
-
-public:
-	// Default constructor.
-	BST();
-
-	// Parameterized constructor.
-	BST(int);
-
-	// Insert function.
-	BST* Insert(BST*, int);
-
-	// Inorder traversal.
-	void Inorder(BST*);
-};
-
-// Default Constructor definition.
-BST ::BST()
-	: data(0)
-	, left(NULL)
-	, right(NULL)
+int tree [10];
+int leftNode = 0;
+int rightNode = 0;
+int root(int key)
 {
+    if (tree[0] != '\0')
+    {
+        cout << "Tree already had root.";
+        /* code */
+    }
+    else
+        tree[0] = key;
+    return 0; 
 }
 
-// Parameterized Constructor definition.
-BST ::BST(int value)
+void isEmpty()
 {
-	data = value;
-	left = right = NULL;
+    if(tree[0] == '\0')
+    {
+        cout<<"The tree is currently Empty.";
+    }
+}
+// My code
+int new_Node(int key, int parent){
+    if (key >=parent)
+    {
+        /* code */  //I give up :(
+    }
+    return 0;
 }
 
-// Insert function definition.
-BST* BST ::Insert(BST* root, int value)
-{
-	if (!root) {
-		// Insert the first node, if root is NULL.
-		return new BST(value);
-	}
-
-	// Insert data.
-	if (value > root->data) {
-		// Insert right node data, if the 'value'
-		// to be inserted is greater than 'root' node data.
-
-		// Process right nodes.
-		root->right = Insert(root->right, value);
-	}
-	else if (value < root->data){
-		// Insert left node data, if the 'value'
-		// to be inserted is smaller than 'root' node data.
-
-		// Process left nodes.
-		root->left = Insert(root->left, value);
-	}
-
-	// Return 'root' node, after insertion.
-	return root;
+int set_left(int key, int parent) {
+  if (tree[parent] == '\0')
+    cout << "\nCan't set child at "<< (parent * 2) + 1<< " , no parent found";
+  else
+    tree[(parent * 2) + 1] = key;
+  return 0;
+}
+ 
+int set_right(int key, int parent) {
+  if (tree[parent] == '\0')
+    cout << "\nCan't set child at "<< (parent * 2) + 2<< " , no parent found";
+  else
+    tree[(parent * 2) + 2] = key;
+  return 0;
+}
+ 
+int print_tree() {
+  cout << "\n";
+  for (int i = 0; i < 10; i++) {
+    if (tree[i] != '\0')
+      cout << tree[i];
+    else
+      cout << "-";
+  }
+  return 0;
 }
 
-// Inorder traversal function.
-// This gives data in sorted order.
-void BST ::Inorder(BST* root)
+// Driver Code
+int main() 
 {
-	if (!root) {
-		return;
-	}
-	Inorder(root->left);
-	cout << root->data << endl;
-	Inorder(root->right);
+    int count;
+    int arr[10];
+    isEmpty();
+    cout<<"\nHow many nodes of the tree?";
+    cin>>count;    
+    for (int r = 0; r < count; r++)
+    {
+        cout<<"Enter Element "<<r<<":";
+        cin>> arr[r];
+    }
+    //sorting kaam nai lagena
+    // for (int i = 0; i < count; i++)
+    // {
+    //     int k = arr[i];
+    //     int j = i;
+    //     while (j>0 && arr[j-1]>k)
+    //     {
+    //         arr[j] = arr[j-1];
+    //         j=j-1;
+    //     }
+    //     arr[j] = k;
+        
+    // }
+    // cout<<"\nSorted array:";
+    // for (int r = 0; r < count; r++)
+    // {
+    //     cout<<arr[r]<<",";
+    // }
+    root(arr[0]);
+    int pp= 0;
+    for (int i = 0; i < count; i++)
+    {
+        if (arr[i]<arr[pp])
+        {
+            set_left(arr[i],pp);
+        }
+        else
+        {
+            set_right(arr[i], pp);
+        }
+        
+    }
+    
+    
+
+    // set_left(1,0);
+  print_tree();
+  return 0;
 }
-
-// Driver code
-int main()
-{
-	BST b, *root = NULL;
-	root = b.Insert(root, 50);
-	b.Insert(root, 30);
-	b.Insert(root, 20);
-	b.Insert(root, 40);
-	b.Insert(root, 70);
-	b.Insert(root, 60);
-	b.Insert(root, 80);
-
-	b.Inorder(root);
-	return 0;
-}
-
-// This code is contributed by pkthapa
