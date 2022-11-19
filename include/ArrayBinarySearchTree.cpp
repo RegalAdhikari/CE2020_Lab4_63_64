@@ -147,9 +147,7 @@ int main()
           set_right(arr[i],0);
         }   
     }
-    
 
-    // set_left(1,0);
   print_tree();
   searchBST();
   cout<<"\nKey to delete: ";
