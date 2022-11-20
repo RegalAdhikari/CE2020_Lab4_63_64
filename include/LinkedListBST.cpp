@@ -105,7 +105,7 @@ void LinkedListBST::removeBST(int key)
       }
       if (current == nullptr)
       {
-        cout << "The key is not in the tree." << endl;
+        cout << "The key " << key << " is not in the tree." << endl;
         return;
       }
     }
